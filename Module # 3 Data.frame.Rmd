@@ -1,0 +1,19 @@
+```{r}
+df <- data.frame(
+  name <- c("Jeb", "Donald", "Ted", "Marco", "Carly", "Hillary", "Bernie"),
+  
+  abcPollResults <- c(4, 62, 51, 21, 2, 14, 15),
+  
+  cbsPollResults <- c(12, 75, 43, 19, 1, 21, 19)
+
+  )
+```
+
+```{r}
+df<- data.frame(name, abcPollResults, cbsPollResults, stringsAsFactors = FALSE)
+df
+```
+
+```{r}
+str(df)
+```
