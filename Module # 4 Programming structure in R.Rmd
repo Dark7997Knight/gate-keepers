@@ -1,0 +1,74 @@
+```{r}
+library(readr)
+text_file_3 <- read_csv("C:/Users/aholl/Desktop/text file 3.txt", 
+    col_types = cols(frequ = col_number(), 
+        bloodp = col_number(), first = col_character()))
+View(text_file_3)
+```
+
+```{r}
+patients <- text_file_3
+patientsHistory <-data.frame(patients)
+```
+
+
+
+```{r}
+patientsHistory$first<-as.character(patientsHistory$first)
+patientsHistory$second<-as.character(patientsHistory$finaldecision)
+```
+
+
+
+```{r}
+boxplot(patientsHistory$frequ, patientsHistory$bloodp, 
+        main= "first anaylisis by general doctor",
+        col = rainbow(7),
+        xlab = "First Experiment", 
+        ylab = "Blood Pressure",
+        horizontal = TRUE)
+```
+
+```{r}
+boxplot(bloodp ~ first, patientsHistory, 
+        main= "First anaylisis by general doctor",
+        col = rainbow(7),
+        xlab = "Blood Pressure", 
+        ylab = "Good or Bad assessment of patient's visit",
+        horizontal = TRUE)
+```
+
+
+```{r}
+boxplot(bloodp ~ second, patientsHistory, 
+        main= "Second anaylisis by general doctor",
+        col = rainbow(4),
+        xlab = "Blood Pressure", 
+        ylab = "Good or Bad assessment of patient's visit",
+        horizontal = TRUE)
+```
+
+
+
+```{r}
+boxplot(bloodp ~ finaldecision, patientsHistory, 
+        main= "Second anaylisis by general doctor",
+        col = rainbow(4),
+        xlab = "Blood Pressure", 
+        ylab = "Good or Bad assessment of patient's visit",
+        horizontal = TRUE)
+```
+```{r}
+str(patientsHistory)
+```
+
+```{r}
+BloodpressureVisits <- patientsHistory$frequ
+hist(BloodpressureVisits,col = rainbow(6))
+```
+
+
+
+
+
+
