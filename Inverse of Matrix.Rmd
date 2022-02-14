@@ -1,0 +1,53 @@
+```{r}
+A <- matrix(1:100, nrow=10)  
+B <- matrix(1:1000, nrow=10)
+```
+
+```{r}
+#Transpose A 
+C <- t(A)
+C
+```
+
+```{r}
+D <- t(B)
+D
+```
+
+
+```{r}
+vec1<-matrix(c(C), nrow = 10, byrow = TRUE)
+vec1
+```
+
+
+
+```{r}
+vec2 <-matrix(c(D), nrow = 10, byrow = TRUE)
+vec2
+```
+
+
+```{r}
+newVec1 <-vec1%*%C
+newVec1
+```
+
+
+```{r}
+det(newVec1)
+solve(newVec1)
+```
+
+```{r}
+newVec2 <-vec2%*%D
+newVec2
+```
+
+```{r}
+det(vec2)
+solve(vec2)
+```
+``
+
+
