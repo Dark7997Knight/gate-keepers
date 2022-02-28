@@ -1,0 +1,30 @@
+```{r}
+data("PlantGrowth")
+isS4(PlantGrowth)
+```
+
+```{r}
+list(PlantGrowth)
+```
+
+```{r}
+summary(PlantGrowth)
+```
+
+```{r}
+#Calculate the mean of s3 Object
+mean(PlantGrowth)
+```
+```{r}
+mode(PlantGrowth)
+```
+```{r}
+typeof(PlantGrowth)
+```
+
+
+```{r}
+# Generic functions that work with the selected dataset, "Planet Growth"
+print("PlantGrowth")
+plot(PlantGrowth$weight)
+```
