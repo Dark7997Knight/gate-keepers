@@ -1,0 +1,84 @@
+```{r}
+##Step1: Import dataset into R
+install.packages("pryr")
+require(pryr)
+require(ISLR)
+require(boot)
+install.packages("plyr")
+library(data.table)
+library(plyr)
+```
+
+
+```{r}
+##Step1: Import dataset into R
+x = read.table(file.choose(),header = TRUE,sep = ",")
+```
+
+```{r}
+x
+```
+
+
+```{r}
+read.table("Assignment 6 Dataset.txt",header = TRUE)
+```
+
+
+```{r}
+##error in step 1 
+StudentAverage = ddply(StudentAverage,"Sex",transform, =mean(Sex))
+Sex7 = StudentAverage$Sex
+mean(Sex7)
+```
+
+
+```{r}
+##Step2: run plyer generates for the mean of both Age and Grade split by gender
+install.packages("plyr")
+library(plyr)
+y = ddply(x,"Sex",transform, Grade.Average=mean(Grade))
+ddply(x,"Sex",transform, Grade.Average=mean(Grade))
+y
+```
+
+
+
+```{r}
+write.table(y,"Sorted_Average")
+y
+```
+
+
+```{r}
+write.table(y,"Sorted_Average",sep = ",")
+y
+```
+
+
+```{r}
+##Step: 4 Filter the names in the given list for names that contain the 
+##letter i
+newx <- subset(x,grepl("[iI]",x$Name))
+```
+
+
+```{r}
+##New dataset
+newx
+```
+
+
+```{r}
+##Step # 3
+subset(x,grepl("[iI]",x$Name))
+```
+
+
+```{r}
+##Write the filtered data set and convert it to CSV file
+##Hint(file.choose() and subset())
+write.table(newx,"DataSubset", sep = ",")
+newx
+```
+
