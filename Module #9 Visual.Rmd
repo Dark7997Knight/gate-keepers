@@ -1,0 +1,186 @@
+```{r}
+##Setting working directory
+##setwd("C:/Users/aholl/Desktop/Rstudiogithub/Module # 9/Module #9 Visual")
+```
+
+```{r}
+##installin Packages
+install.packages("flextable")
+install.packages("magrittr")
+```
+
+```{r}
+##Loading Libraries
+library(flextable)
+library(magrittr)
+library(tidyverse)
+library(lattice)
+```
+
+```{r}
+##  Loading dataset into R
+library(readr)
+Arrests <- read_csv("Arrests.csv")
+View(Arrests)
+```
+
+
+```{r}
+#Next to the variables we got the variable types
+#<chr> stands for "character"
+#For example: "Darknight"
+
+#<int> stands for "integers"
+#For example: 177
+
+#<dbl> stands for "numerical variable" that includes fractions inbetween integers 
+#For example: 79.0
+
+#<factor> stands for categorical variable"
+#For example: size= small , big, and biggest
+#For example: I want to change "male" and " female" to a "ordinal categorical variable" 
+#where the order matters, where there is a natural order actually matters in my data table. 
+
+#For example "small, medium and large" where order matters
+#For example: gender <chr> "male" , "female" is being defined as a <chr> 
+#character variable
+```
+
+
+```{r}
+##Lets look at and explore the different variables types from the raw data
+##or a nice little summary of our data sets
+glimpse(Arrests)
+```
+
+```{r}
+#Lets look for missing data and see whats in each variable by using the "unique" function
+unique(Arrests$...1)
+```
+
+```{r}
+#realeased identifies who was released or not
+unique(Arrests$released)
+```
+```{r}
+#Changing to factor variables
+Arrests$released <- as.factor(Arrests$released)
+class(Arrests$released)
+```
+
+
+```{r}
+#colour identifies the ethical race that was arrested 
+unique(Arrests$colour)
+```
+
+```{r}
+#Now lets change the <chr> "character variable" into a factor variable
+#So we are going to assign or replace "Arrests$colour" as.factor() which is a function
+#and an argument in that function to make "Arrest$colour" into two categories of 
+#"black" and "white". 
+Arrests$colour <- as.factor(Arrests$colour)
+class(Arrests$colour)
+```
+
+```{r}
+#year identifies the time the individual was arrested
+unique(Arrests$year)
+```
+```{r}
+#Setting year as factors
+Arrests$year <-as.factor(Arrests$year)
+class(Arrests$year)
+```
+
+
+```{r}
+#age identifies the age an individual was arrested
+unique(Arrests$age)
+```
+
+```{r}
+#sex identifies the identity of gender that was arrested
+unique(Arrests$sex)
+```
+
+```{r}
+#changing to factor variables 
+Arrests$sex <- as.factor(Arrests$sex)
+class(Arrests$sex)
+```
+
+```{r}
+#employed identifies if the individual was working or not when they were incarcenated
+unique(Arrests$employed)
+```
+
+```{r}
+#changing to factor variables 
+Arrests$employed <-as.factor(Arrests$employed)
+class(Arrests$employed)
+```
+
+```{r}
+#citizen identifies if the individual was from another country or not 
+unique(Arrests$citizen)
+```
+
+```{r}
+#changing to factor variables 
+Arrests$citizen <- as.factor(Arrests$citizen)
+class(Arrests$citizen)
+```
+
+
+```{r}
+#checks identifies how many paychecks they have receive in a year
+unique(Arrests$checks)
+```
+
+```{r}
+#Lets look at the mean of age 
+mean(Arrests$age)
+```
+
+```{r}
+Arrests %>% 
+  select(released,colour,year,age,sex,employed,citizen)
+```
+
+
+```{r}
+# There are no missing values in the selected data set I have choosen
+Arrests %>% 
+  select(released,colour,year,age,sex,employed,citizen) %>% 
+  filter(!complete.cases(.))
+```
+
+
+```{r}
+#Structure of dataset
+str(Arrests)
+```
+
+```{r}
+#Sample of first 10 rows and columns to check to see if flexatable is working
+flextable(Arrests[ sample.int(10),])
+```
+```{r}
+#configuring the specific rows I want to analysis
+arrestsData <- flextable(data = Arrests,
+                         col_keys = c("released", "colour", 
+                                      "year", "age", "sex",
+                                      "employed", "checks"))
+#view new data set
+arrestsData
+```
+```{r}
+#Next, lets plot it original data set
+plot(Arrests)
+```
+
+
+
+
+
