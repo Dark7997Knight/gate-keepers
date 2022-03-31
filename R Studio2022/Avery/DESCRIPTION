@@ -1,24 +1,31 @@
 Package: Avery
 Type: Package
-Title: What the Package Does (Fertility measurement for eggs from a sample of 35 lake trout)
+Title: What the Package Does (Fertilization was investigated on a sample of 35 lakeside trout fish eggs)
 Version: 0.1.0
-Author: Avery Holloman
-Maintainer: The package maintainer <averymarcell@usf.edu>
+Author: "Avery Holloman  <averymarcell@usf.edu> [aut, cre]"
+Maintainer: The package maintainer <averymarcell@usf.edu> 
 Description:
--Fish Eggs
-A data frame with 35 observations on the following 4 variables.
-Age <-	Age of the fish (in years)
-PctDM	<- Percentage of the total egg material that is solid
-Month	<- Month fish was caught: Sep=September or Nov=November
-Sept Indicator with <- 1=September or 0=November
 
--Details
-Researchers collected samples of female lake trout from Lake Ontario in September and November
-of 2002 through 2004. A goal of the study was to investigate the fertility of fish that had been
-stocked in the lake. One measure of the viability of fish eggs is percent dry mass(PctDM) which
-reflects the energy potential stored in the eggs by recording the percentage of the total egg material that is solid. Values of the PctDM for a sample of 35 lake trout (14 in September and 21 in
-November) are given in this dataset along with the age (in years) of the fish.
-
-License: What license is it under?
+Test Ferlization of Fish Eggs within a controlled setting environment by utilizing statistical 
+    data that was collected by Ichthyologist marine biology scientists that collected samples 
+    of female lake trout located at the southernmost point of Lake Ontario, Canada, 
+    at 41°41'N, 82°41"W (41.685,-82.684), or about 41.7 degrees north latitude. 
+    just south of Pelee Island during the winter months of September and November
+    to form a timeline from 2002-2004.
+    Factors to be taken into consideration are: 
+    One measure of the viability of fish eggs is percent dry mass(PctDM) 
+    which reflects the energy potential stored in the eggs by recording the percentage of the total 
+    egg material that is solid. 
+    Values of the PctDM for a sample of 35 lake trout (14 in September and 21 inNovember) are 
+    given in this dataset along with the age (in years) of the fish.  
+    A data frame with 35 observations on the following 4 variables.
+    Age <-	Age of the fish (in years)
+    PctDM	<- Percentage of the total egg material that is solid
+    Month	<- Month fish was caught: Sep=September or Nov=November
+    Sept Indicator with <- 1=September or 0=November
+    
+Depends: R(>=3.1.2)
+License: What license is it under? CCO
 Encoding: UTF-8
 LazyData: true
+
