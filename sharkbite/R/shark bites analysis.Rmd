@@ -1,0 +1,248 @@
+```{r}
+#Install Packages
+install.packages("dplyr")
+install.packages("ggmap")
+install.packages("ggplot2")
+install.packages("survival")
+install.packages("ranger")
+install.packages("ggfortify")
+install.packages("ggvis")
+install.packages("psych")
+```
+
+
+```{r}
+#Install Libraries
+library(dplyr)
+library(ggmap)
+library(ggplot2)
+library(tidyverse)
+library(survival)
+library(ggvis)
+library(psych)
+```
+
+```{r}
+#Read in Data from csv file deliminated
+my_data <- read.csv("sharkdata8.csv")
+```
+
+
+```{r}
+#Structure format of data
+str(my_data)
+```
+
+```{r}
+#list colnames
+colnames(my_data)
+```
+
+```{r}
+#list rownames
+rownames(my_data)
+```
+
+```{r}
+#summary of data
+summary(my_data)
+```
+
+```{r}
+#describe function table
+describe(my_data)
+```
+
+```{r}
+#glimpse of the data structure
+glimpse(my_data)
+```
+```{r}
+#duplicate data frame
+my_data2 <- my_data
+#replace blank by NA
+my_data2[my_data2 == ""]<- NA
+#view data in table
+View(my_data2)
+```
+
+```{r}
+#Count Na values in my_data2 columns only
+colSums(is.na(my_data2))
+```
+```{r}
+#Remove only one column for "date"
+my_data2 <- subset (my_data2, select = -Date)
+```
+
+
+```{r}
+#Remove only one column for "Location"
+my_data2 <- subset (my_data2, select = -Location)
+```
+
+```{r}
+#Remove only one column for "Injury"
+my_data2 <- subset (my_data2, select = -Injury)
+```
+
+```{r}
+#Remove only one column for "Name"
+my_data2 <- subset (my_data2, select = -Name)
+```
+
+```{r}
+#Remove NA's from year
+my_data2 %>%
+  filter(!is.na(Year))
+```
+```{r}
+#Remove NA's from type
+my_data2 %>%
+  filter(!is.na(Type))
+```
+```{r}
+#Remove NA's from country
+my_data2 %>%
+  filter(!is.na(Country))
+```
+
+```{r}
+#Remove NA's from sex
+my_data2 %>%
+  filter(!is.na(Sex))
+```
+
+```{r}
+#Remove NA's from age
+my_data2 %>%
+  filter(!is.na(Age))
+```
+
+```{r}
+#Remove NA's from activity
+my_data2 %>%
+  filter(!is.na(Activity))
+```
+
+```{r}
+#install packages 
+install.packages("janitor")
+install.packages("vtree")
+```
+
+
+```{r}
+#Load library
+library(janitor)
+library(vtree)
+```
+
+
+```{r}
+#Fatality by Sex gender
+tabyl(my_data2, Sex, Fatal..Y.N.)
+```
+
+```{r}
+#Plot vtree
+vtree(my_data2, "Sex", palette = 3, sortfill = TRUE)
+```
+
+```{r}
+#percents for each column
+tabyl(my_data2, Sex) %>%
+  adorn_percentages("col") %>%
+  adorn_pct_formatting(digits = 1)
+```
+
+
+```{r}
+#Total Shark Fatalities Plot
+plot(my_data2$original.order,my_data2$Age,col = 12)
+```
+
+
+```{r}
+#Number of shark bites
+sharkbites_20 <- head(my_data2$original.order, 20)
+head(sharkbites_20, 20)
+```
+
+```{r}
+#Converting Yes to 1 and No to 0 in my_data2
+my_data2$Fatal..Y.N.<-ifelse(my_data2$Fatal..Y.N.=="Yes",1,0)
+my_data2
+```
+
+
+```{r}
+library(esquisse)
+library(modeldata)
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+```
+
+
+```{r}
+#Box Plot
+my_data2 %>%
+ filter(Year >= 1940L & Year <= 2040L & !is.na(Year)) %>%
+ filter(!(Type %in% c("?", "Questionable", 
+"Invalid", "Under investigation")) | is.na(Type)) %>%
+ filter(Sex %in% c("F", "M ") | is.na(Sex)) %>%
+ ggplot() +
+ aes(x = Year, y = Type, fill = Fatal..Y.N.) +
+ geom_boxplot() +
+ geom_jitter() +
+ scale_fill_distiller(palette = "YlGn", 
+ direction = 1) +
+ labs(x = "Year of Shark Bite", y = "Type of Shark Bite", title = "Boxplot ", subtitle = "Female vs Male vs NA(unknown) shark bites by type") +
+ ggthemes::theme_igray() +
+ facet_wrap(vars(Sex))
+```
+
+```{r}
+#Bar Plot
+my_data2 %>%
+ filter(Year >= 1980L & Year <= 2040L | is.na(Year)) %>%
+ filter(!(Type %in% c("?", "Unverified"
+)) | is.na(Type)) %>%
+ filter(Sex %in% c("F", "M ") | is.na(Sex)) %>%
+ filter(Fatal..Y.N. >= 0.02 & Fatal..Y.N. <= 
+ 0.1 | is.na(Fatal..Y.N.)) %>%
+ ggplot() +
+ aes(x = Country) +
+ geom_bar(fill = "#FF8C00") +
+ labs(x = "Shark Bite", y = "Countries", 
+ title = "Bar Plot", subtitle = "Shark Bite count by country") +
+ coord_flip() +
+ theme_gray()
+```
+
+
+```{r}
+#Package for divison
+#' Divide two variables
+#'
+#' @param x A numeric value
+#' @param y
+#'
+#' @return a number
+#' @export
+#'
+#' @examples
+divide_val <- function(x,y) {
+  x/y
+}
+
+```
+
+
+```{r}
+#Testing Package against data
+divide_val(my_data2$original.order)
+```
+
+
